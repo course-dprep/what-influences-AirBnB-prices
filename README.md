@@ -5,7 +5,7 @@ Airbnb offers many tourists and travelers a relatively affordable and convenient
 What is the effect of listing characteristics on the price per night of Hawaiian Airbnb listings and how does this effect differ per season? 
 
 ### Listing characteristics and corresponding variable names
-Room type (room_type), number of guest (accomodates), number of baths (bathrooms_text), number of bedrooms (bedrooms), number of beds (beds), whether the guests can automatically book the listing without host's approval (instant_bookable)
+Room type (room_type), number of guest (accomodates), number of baths (bathrooms_text), number of bedrooms (bedrooms), number of beds (beds), review scores rating (review_scores_rating), whether the guests can automatically book the listing without host's approval (instant_bookable)
 
 ## Repository overview 
 ```
