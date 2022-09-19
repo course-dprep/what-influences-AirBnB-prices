@@ -1,0 +1,19 @@
+#recode room_type into 4 dummy variables
+
+# june_s data set
+june_s$entire_home_apt_room_type <- ifelse(june_s$room_type == "Entire home/apt", 1, 0)
+june_s$private_room_room_type <- ifelse(june_s$room_type == "Private room", 1, 0)
+june_s$shared_room_room_type <- ifelse(june_s$room_type == "Shared room", 1, 0)
+june_s$hotel_room_room_type <- ifelse(june_s$room_type == "Hotel room", 1, 0)
+
+# dec_s data set
+dec_s$entire_home_apt_room_type <- ifelse(dec_s$room_type == "Entire home/apt", 1, 0)
+dec_s$private_room_room_type <- ifelse(dec_s$room_type == "Private room", 1, 0)
+dec_s$shared_room_room_type <- ifelse(dec_s$room_type == "Shared room", 1, 0)
+dec_s$hotel_room_room_type <- ifelse(dec_s$room_type == "Hotel room", 1, 0)
+
+# mar_s data set
+mar_s$entire_home_apt_room_type <- ifelse(mar_s$room_type == "Entire home/apt", 1, 0)
+mar_s$private_room_room_type <- ifelse(mar_s$room_type == "Private room", 1, 0)
+mar_s$shared_room_room_type <- ifelse(mar_s$room_type == "Shared room", 1, 0)
+mar_s$hotel_room_room_type <- ifelse(mar_s$room_type == "Hotel room", 1, 0)
