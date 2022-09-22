@@ -12,7 +12,7 @@ unique(df$bathrooms_text) #checking the existing unique types of bathrooms
 
 #creating dummies for shared and private ~replace with own table name
 df$bathroom_shared <- ifelse(str_detect(df$bathrooms_text, 'shared'), 1, 0)
-df$bathroom_private <- ifelse(str_detect(df$bathrooms_text, 'private'), 1, 0)
+df$bathroom_private <- ifelse(str_detect(df$bathrooms_text, 'shared'), 0, 1)
 
 
-df$bathrooms <- as.integer(word(df$bathrooms_text,1)) #putting the number of bathrooms into the right bathrooms column
+df$bathrooms <- as.double(word(df$bathrooms_text,1)) #putting the number of bathrooms into the right bathrooms column
