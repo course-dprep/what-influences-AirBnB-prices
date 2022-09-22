@@ -1,6 +1,11 @@
 # Inspect room_type variable
 sum(is.na(june_s$room_type)) #checking if room type column has NA
+sum(is.na(dec_s$room_type)) 
+sum(is.na(mar_s$room_type)) 
+
 june_s %>% group_by(room_type) %>% summarise(number_of_observations = n(), nrlistings = sum(id)) #checking number of listings per room type 
+dec_s %>% group_by(room_type) %>% summarise(number_of_observations = n(), nrlistings = sum(id)) 
+mar_s %>% group_by(room_type) %>% summarise(number_of_observations = n(), nrlistings = sum(id)) 
 
 #Recode room_type into 3 dummy variables (hotel room is the baseline)
 
