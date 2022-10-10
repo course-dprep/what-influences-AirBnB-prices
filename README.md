@@ -7,7 +7,7 @@ Airbnb offers many tourists and travelers a relatively affordable and convenient
 _What are the effect of the property characteristics and teh number of days left untill the booking starts on the price per night of Hawaiian AirBnB listings and how do these effects differ per season?_
 
 ### Conceptual Model
-<img width="1195" alt="Screenshot 2022-10-10 at 10 10 12" src="https://user-images.githubusercontent.com/96148213/194823701-437c7e35-b59a-4d70-8069-d22aaa93166b.png">
+<img width="1160" alt="Screenshot 2022-10-10 at 10 20 21" src="https://user-images.githubusercontent.com/96148213/194824516-f0696e93-4ce9-4a39-ad30-69bc7e58f28f.png">
 
 ## Method
 ### Included Variables
