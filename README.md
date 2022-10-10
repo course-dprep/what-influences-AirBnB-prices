@@ -1,5 +1,7 @@
+# Which property characteristics influence AirBnB prices and does booking early always guarantee a lower price?
+
 ## Purpose and motivation
-Airbnb offers many tourists and travelers a relatively affordable and convenient accomodation option and home owners an extra source of income. This project aims to estimate the effects of listing characteristics on price which is relevant for Airbnb hosts as it aids in the development of a suitable pricing strategy. Moreover, in this project the differences across seasons will be researched. The data in this projects is sourced from http://insideairbnb.com/ 
+Airbnb offers many tourists and travelers a relatively affordable and convenient accomodation option and home owners an extra source of income. This project aims to estimate the effects of (a) listing characteristics  and (b) time until the booking starts on the price of the listing. The findings of thsi reasearch will aid Airbnb hosts in the developing a suitable pricing strategy based on the characteristics of the properties they own. Moreover, in this project the differences across seasons will be researched. The data in this projects is sourced from http://insideairbnb.com/ 
 
 ## Research question
 What is the effect of listing characteristics on the price per night of Hawaiian Airbnb listings and how does this effect differ per season? 
