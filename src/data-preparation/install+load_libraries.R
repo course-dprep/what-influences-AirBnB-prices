@@ -1,4 +1,6 @@
 install.packages("tidyverse")
+install.packages("utils")
+install.packages("stringr")
 library(utils)
 library(tidyverse)
 library(stringr)
