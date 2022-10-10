@@ -7,7 +7,7 @@ Airbnb offers many tourists and travelers a relatively affordable and convenient
 _What are the effect of the property characteristics and teh number of days left untill the booking starts on the price per night of Hawaiian AirBnB listings and how do these effects differ per season?_
 
 ### Conceptual Model
-<img width="1195" alt="Screenshot 2022-10-10 at 10 10 12" src="https://user-images.githubusercontent.com/96148213/194823525-ad58f5b0-24e9-40f6-9803-cf093e7b985d.png">
+<img width="1195" alt="Screenshot 2022-10-10 at 10 10 12" src="https://user-images.githubusercontent.com/96148213/194823701-437c7e35-b59a-4d70-8069-d22aaa93166b.png">
 
 ## Method
 ### Included Variables
@@ -56,6 +56,17 @@ However, in practice the variables room_type and neighbourhood_goup have been re
 |  └── paper
 └── make file
 ```
+
+## Dependencies
+Please follow the [installation guide](https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/) to install R.
+
+Also, make sure you have installed below packages:
+```
+install.packages("tidyverse")
+install.packages("utils")
+install.packages("stringr")
+```
+
 ## Team 10 Data Preparation & Workflow Management
 - Alexandra Bock [a.bock@tilburguniversity.edu]
 - Koray Kul [a.b.luca@tilburguniversity.edu]
