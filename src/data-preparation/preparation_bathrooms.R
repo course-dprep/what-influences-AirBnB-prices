@@ -27,7 +27,7 @@ june_s$bathrooms <- as.double(word(june_s$bathrooms_text,1))
 #putting 0.5 for each half bath
 june_s$bathrooms[str_detect(june_s$bathrooms_text, 'Private|Shared|Half')]<-0.5
 
-# for the june dataset, there are only 23 NAs in the bathrooms column; these will be ignored during the regression analysis
+# for the june dataset, there are only 22 NAs in the bathrooms column; these will be ignored during the regression analysis
 
 
 #march dataset
@@ -45,7 +45,7 @@ sum(is.na(mar_s$bathrooms_text))
 #putting the number of bathrooms into the right bathrooms column
 mar_s$bathrooms <- as.double(word(mar_s$bathrooms_text,1)) 
 
-# for the march dataset, there are only 24 NAs in the bathrooms column; these will be ignored during the regression analysis
+# for the march dataset, there are only 23 NAs in the bathrooms column; these will be ignored during the regression analysis
 
 #putting 0.5 for each half bath
 mar_s$bathrooms[str_detect(mar_s$bathrooms_text, 'Private|Shared|Half')]<-0.5
@@ -65,7 +65,7 @@ sum(is.na(dec_s$bathrooms_text))
 #putting the number of bathrooms into the right bathrooms column
 dec_s$bathrooms <- as.double(word(dec_s$bathrooms_text,1)) 
 
-# for the december dataset, there are only 30 NAs in the bathrooms column; these will be ignored during the regression analysis
+# for the december dataset, there are only 29 NAs in the bathrooms column; these will be ignored during the regression analysis
 
 #putting 0.5 for each half bath
 dec_s$bathrooms[str_detect(dec_s$bathrooms_text, 'Private|Shared|Half')]<-0.5
