@@ -1,23 +1,25 @@
 # How do Property Characteristics influence AirBnB prices and does booking early guarantee a Lower Price?
+<img width="1100" alt="Screenshot 2022-10-10 at 22 31 01" src="https://user-images.githubusercontent.com/96148213/194947888-0b9acaeb-4200-4ce9-b93e-e793eb060fb8.png">
 
 ## 1.Purpose and Motivation
-Airbnb offers many tourists and travelers a relatively affordable and convenient accomodation option and home owners an extra source of income. This project aims to estimate the effects of (a) listing characteristics, (b) time untill the booking starts and (c) season on the price per night of the listing. The findings of this reasearch will aid Airbnb hosts in the developing a suitable pricing strategy based on the characteristics of the properties they own. Moreover, in this project we investigate all Hawaiian AirBnB listings. The data in this projects is sourced from [Inside AirBnB](http://insideairbnb.com/).
+AirBnB offers many tourists and travelers a relatively affordable and convenient accommodation option and home owners an extra source of income. This project aims to estimate the effects of (a) listing characteristics, (b) time until the booking starts and (c) season on the price per night of the listing. The findings of this research will aid Airbnb hosts in developing a suitable pricing strategy based on the characteristics of the properties they own. Moreover, in this project we investigate all Hawaiian AirBnB listings. The data in this project is sourced from [Inside AirBnB](http://insideairbnb.com/).
 
 ## 2.Research Question
-_What are the effect of the property characteristics and the number of days left untill the booking starts on the price per night of Hawaiian AirBnB listings and do prices differ per season?_
+_What are the effects of the property characteristics and the number of days left until the booking starts on the price per night of Hawaiian AirBnB listings and do prices differ per season?_
 
 ### Conceptual Model
-
+<img width="609" alt="Screenshot 2022-10-10 at 19 01 24" src="https://user-images.githubusercontent.com/96148213/194940541-665f3c01-b4fb-4d9b-a4b7-34889cc9540a.png">
+_Figure 1. Conceptual Model_
 
 ## 3.Method
 ### 3.1. Included Variables
 
-Overview of the variables incuded in this study:
+Overview of the variables included in this study:
 |Variable (group) |Description|
 |---------|----------|
 |**room_type**|Since there are 4 room types: "Entire home/apt", "Private room", "Shared room", "Hotel", three dummy variables have been coded (a hotel room being the baseline) for the purpose of including them in the regression analysis. **Entire_home_apt_room_type** (1 if listing is an entire home or apartment, 0 if the listing is of a different type); **Private_room_room_type** (1 if listing is a private room, 0 if the listing is of a different type). **Shared_room_room_type** (1 if listing is a shared room, 0 if the listing is of a different type)|
-|**neighbourhood_goup**|Since in Hawaii there are 4 neighbourhood groups: "Hawaii", "Kauai", "Maui", "Honolulu", three dummy variables have been coded (Honolulu being the baseline) for the purpose of including them in the regression analysis. **Hawaii_neignborhood** (1 if listing is in the Hawaii neighbourhood, 0 if the listing is in a different neighbourhood. **Kauai_neignborhood** (1 if listing is in the Kauai neighbourhood, 0 if the listing is in a different neighbourhood. **Maui_neignborhood** (1 if listing is in the Maui neighbourhood, 0 if the listing is in a different neighbourhood.|
-|**accommodates**|the maximum number of guest the propery can accommodate|
+|**neighbourhood_goup**|Since in Hawaii there are 4 neighborhood groups: "Hawaii", "Kauai", "Maui", "Honolulu", three dummy variables have been coded (Honolulu being the baseline) for the purpose of including them in the regression analysis. **Hawaii_neighborhood** (1 if the listing is in the Hawaii neighbourhood, 0 if the listing is in a different neighbourhood. **Kauai_neighborhood** (1 if the listing is in the Kauai neighbourhood, 0 if the listing is in a different neighbourhood. **Maui_neighborhood** (1 if the listing is in the Maui neighborhood, 0 if the listing is in a different neighborhood.|
+|**accommodates**|the maximum number of guest the property can accommodate|
 |**bathrooms**|the number of bathrooms of the property|
 |**bathroom_type**|dummy variable to indicate whether the bathroom(s) are private or shared|
 |**bedrooms**|the number of bedrooms of the property|
@@ -36,7 +38,7 @@ Overview of other variables used to merge different datasets or aggregate the da
 Data dictionary of the raw datasets can be found [here](https://docs.google.com/spreadsheets/d/1iWCNJcSutYqpULSQHlNyGInUvHg2BoUGoNRIGa6Szc4/edit#gid=1322284596).
 
 ### 3.2.Research Method
-We use regression analysis to examine the effects of the propery characteristics and time until booking starts on the listing price. We are interested in which property characteristics drive the price up or down and which have the largest effects. The dependent variable is the listing price of the Hawaiian Airbnb listing. The independent variables are given in the table above. The general regression equation can be summarized as follows:
+In order to estimate the effect of several metric and non-metric variables (property characteristics, time until booking starts and season) on another metric variable (listing price of the Hawaiian Airbnb listing), we opt for a regression analysis. We are interested in which property characteristics drive the price up or down and which have the largest effects. All independent variables are outlined in the table above. The regression equation can be summarized as follows:
 
 _Y = β0 + β1*entire_home_apt_room_type + β2*private_room_room_type + β3*shared_room_room_type + β4*hawaii_neignborhood + β5*kauai_neignborhoodbathroom_type + β6*maui_neignborhood + β7*accommodates + β8*bathrooms + β9*bathroom_type + β10*bedrooms + β11*beds + β12*review_score_rating + β13*instant_bookable + β14*time_diff + β15*winter + ε_
 
@@ -56,9 +58,9 @@ _Y = β0 + β1*entire_home_apt_room_type + β2*private_room_room_type + β3*shar
 ```
 
 ## 5.Dependencies
-Please follow the [installation guide](https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/) to install R.
+Please follow this [guide](https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/) to install R.
 
-Also, make sure you have installed below packages:
+Also, make sure you install the following packages:
 ```
 install.packages("tidyverse")
 install.packages("utils")
@@ -69,8 +71,44 @@ install.packages("stringr")
 
 ## 7.Results and Conclusion
 ### 7.1.Results
+The regression output can be found below.
 
-### 7.2 Conclusion
+![daac9914-1e2e-4a17-a6c6-6a5846d31520](https://user-images.githubusercontent.com/96148213/194941090-b4351b1f-20ef-41ed-b619-fa8ebec52467.JPG)
+
+_Figure 2. Regression Output_
+
+## 7.2.Interpretation
+- An entire room or apartment listed on AirBnB is on average €65.61 cheaper compared to a hotel room;
+- A private room listed on AirBnB is on average €23.40 cheaper than a hotel room;
+- A shared room listed on AirBnB is on average €15.14 cheaper than a hotel room;
+- AiBnB listings in the Hawaii neighborhood are on average €29.47 cheaper than listings in the Honolulu neighborhood;
+- AiBnB listings in the Kauai neighborhood are on average €75.63 more expensive than listings in the Honolulu neighborhood;
+- AiBnB listings in the Maui neighborhood are on average €85.41 more expensive than listings in the Honolulu neighborhood;
+- A property that can accommodate an additional guest will have an average price higher by €30.37;
+- A property that has an additional bathroom will have an average price higher by €77.84;
+- A listing with a shared bathroom will cost on average €11.32 less than listings that have a private bathroom;
+- A property that has an additional bedroom will have an average price higher by €96.11;
+- A property that has an additional bed will have an average price higher by €15.43;
+- On average, AirBnB listings in Hawaii that have a review score higher by 1 unit will charge €22.92 more;
+- A listing that can be booked instantly (i.e., doesn't require the host's approval) costs on average €21.24 more than listings for which the host's approval is required;
+- When the time difference in days between the date of booking an accommodation and the start date the reservation increases by 1 day, the price will decrease by €36.63;
+- On average, AirBnB listings in Hawaii are on average €13.19 more expensive during winter (November-April) than during summer (May-September).
+
+### 7.3. Conclusion
+Our findings are relevant for both tourists and travelers  as well as AirBnB hosts. 
+
+For hosts: 
+- Consumers are willing to pay a premium of €22.92 for properties that have a review score higher by 1 unit;
+- You can charge higher prices by €13.19 during winter season as opposed to summer;
+- The Hawaii neighborhood has the cheapest listings, while the Maui neighborhood is the most expensive;
+- Prices in general increase over time;
+- You can charge higher prices by €21.24 by listing your property as instantly bookable;
+
+For consumers:
+- Book early! Prices on average increase by €36.63 per day.
+- The Hawaii neighborhood has the cheapest AirBnB listings.
+- If you're flexible, visit Hawaii during summer! AirBnB listings in Hawaii are on average €13.19 more expensive during winter (November-April) than during summer (May-September).
+
 
 ## Team 10 Data Preparation & Workflow Management
 - Alexandra Bock [a.bock@tilburguniversity.edu]
