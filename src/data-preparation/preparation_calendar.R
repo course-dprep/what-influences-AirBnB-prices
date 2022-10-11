@@ -1,13 +1,8 @@
-#set working directory
-setwd("D:/Material/MSc MA/dPrep/project") #~your own wd
-
-#download datasets
-options(timeout = 200) #extending download timeout because default is 60sec
-download.file('http://data.insideairbnb.com/united-states/hi/hawaii/2022-06-08/data/calendar.csv.gz', destfile = 'calendar-8-jun.csv')
-
-
-#load dataset into variables
-calendar_j <-read.csv("calendar-8-jun.csv")
+#loading dataset
+load("gen/data-preparation/temp/calendar_j.RData")
+library(utils)
+library(tidyverse)
+library(stringr)
 
 # june dataset
 # change variable types of price and adjusted_price
@@ -41,3 +36,7 @@ calendar_j_s$time_diff<- as.numeric(calendar_j_s$date-as.Date("2022-06-08"))
 
 #remove original calendar data frame to free memory
 rm(calendar_j)
+
+save(calendar_j_s,file="gen/data-preparation/output/calendar_j_s.RData")
+
+
