@@ -1,15 +1,8 @@
-#set working directory
-setwd("D:/Material/MSc MA/dPrep/project") #~your own wd
+load("gen/data-preparation/temp/june.RData")
 
-#download datasets
-options(timeout = 200) #extending download timeout because default is 60sec
-
-#8 jun 2022
-download.file('http://data.insideairbnb.com/united-states/hi/hawaii/2022-06-08/data/listings.csv.gz', destfile = 'listings-8-jun.csv')
-
-#load dataset into variables
-june <- read.csv("listings-8-jun.csv")
-
+library(utils)
+library(tidyverse)
+library(stringr)
 
 #take only significant columns to not work with the whole data set
 june_s <- june %>% select(id, bathrooms, bathrooms_text, neighbourhood_group_cleansed, room_type, accommodates,
@@ -142,3 +135,6 @@ summary(june_s$beds)
 
 #take rounded values
 june_s$beds <- round(june_s$beds)
+
+save(june_s,file="gen/data-preparation/output/june_s.RData")
+
