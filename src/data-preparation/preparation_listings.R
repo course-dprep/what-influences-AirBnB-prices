@@ -20,13 +20,12 @@ june_s %>% group_by(neighbourhood_group_cleansed) %>% summarise(number_of_observ
 
 # Recode neighbourhood_group_cleaned into a working format: 3 dummy variables (with Honolulu as baseline as the capital)
 
-# june_s data set
 june_s$hawaii_neighbourhood <- ifelse(june_s$neighbourhood_group_cleansed == "Hawaii", 1, 0)
 june_s$kauai_neighbourhood <- ifelse(june_s$neighbourhood_group_cleansed == "Kauai", 1, 0)
 june_s$maui_neighbourhood <- ifelse(june_s$neighbourhood_group_cleansed == "Maui", 1, 0)
 
 
-# missing value check for accomodates in June
+# missing value check for accomodates 
 june_s %>% count(accommodates)            # There is no missing value only one value is 0 which doesnt make sense as an accomodation doesnt have accomodate.
 june_s %>% filter(accommodates==0)        # one value has 0 accomodate with id:43309266 to understand the situation the website is checked realized that it is an hotel and has wrong number of accomodates. 
 
@@ -49,24 +48,13 @@ typeof(june_s$instant_bookable)   # now it is character
 # june data set changing type to double and changing values from t,f to 1,0.
 june_s$instant_bookable_dummy <- ifelse(june_s$instant_bookable == "t", 1, 0) 
 
-#check if beds variable contains NA
-any(is.na(june_s$beds)) # contains NA
-
-#check if bedrooms variable contains NA
-any(is.na(june_s$bedrooms)) # contains NA
-
-#check range of number of bedrooms and other summary statistics
-summary(june_s$bedrooms) # contains 3534 NAs
-
-#check range of number of beds and other summary statistics
-summary(june_s$beds) # contains 310 NAs
 
 #code to transform the bathrooms_text column into a workable column
 #i create 1 dummy column showing whether the bathroom is private/shared
 sum(is.na(june_s$bathrooms)) #checking if all bathrooms column is NA
 unique(june_s$bathrooms_text) #checking the existing unique types of bathrooms
 
-# june dataset
+
 #creating dummies for shared and private 
 june_s$bathroom_shared <- ifelse(str_detect(june_s$bathrooms_text, 'shared|Shared'), 1, 0)
 
@@ -86,7 +74,7 @@ june_s$bathrooms <- as.double(word(june_s$bathrooms_text,1))
 #putting 0.5 for each half bath
 june_s$bathrooms[str_detect(june_s$bathrooms_text, 'Private|Shared|Half')]<-0.5
 
-# for the june dataset, there are only 22 NAs in the bathrooms column; these will be ignored during the regression analysis
+# there are only 22 NAs in the bathrooms column; these will be ignored during the regression analysis
 
 # Inspect room_type variable
 sum(is.na(june_s$room_type)) #checking if room type column has NA
@@ -95,7 +83,6 @@ june_s %>% group_by(room_type) %>% summarise(number_of_observations = n(), nrlis
 
 #Recode room_type into 3 dummy variables (hotel room is the baseline)
 
-# june_s data set
 june_s$entire_home_apt_room_type <- ifelse(june_s$room_type == "Entire home/apt", 1, 0)
 june_s$private_room_room_type <- ifelse(june_s$room_type == "Private room", 1, 0)
 june_s$shared_room_room_type <- ifelse(june_s$room_type == "Shared room", 1, 0)
@@ -121,6 +108,19 @@ summary(june_s$bedrooms)
 #take rounded values
 june_s$bedrooms <- round(june_s$bedrooms)
 
+
+#check if beds variable contains NA
+any(is.na(june_s$beds)) # contains NA
+
+#check if bedrooms variable contains NA
+any(is.na(june_s$bedrooms)) # contains NA
+
+#check range of number of bedrooms and other summary statistics
+summary(june_s$bedrooms) # contains 3534 NAs
+
+#check range of number of beds and other summary statistics
+summary(june_s$beds) # contains 310 NAs
+
 # change NA in beds variable into 1 if listing accommodates 1 person
 june_s$beds <- ifelse(june_s$accommodates == 1 & is.na(june_s$beds), 1, june_s$beds)
 
@@ -135,6 +135,10 @@ summary(june_s$beds)
 
 #take rounded values
 june_s$beds <- round(june_s$beds)
+
+#inspect variable review_scores_rating
+sum(is.na(june_s$review_scores_rating))
+#there are 4670 NAs in this column, which we omit in the regression analysis
 
 save(june_s,file="gen/data-preparation/output/june_s.RData")
 
