@@ -34,6 +34,11 @@ typeof(calendar_j_s$date)#check
 # Add new variable with time until booking
 calendar_j_s$time_diff<- as.numeric(calendar_j_s$date-as.Date("2022-06-08"))
 
+#divide data per seasons 
+#summer: May-Oct
+#winter: Nov-April
+calendar_j_s$winter <- ifelse((calendar_j_s$date >= as.Date("2022-11-01") & calendar_j_s$date < as.Date("2023-04-01")), 1, 0) 
+
 #remove original calendar data frame to free memory
 rm(calendar_j)
 
