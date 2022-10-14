@@ -1,7 +1,7 @@
 
 # load R data and libraries -----------------------------------------------
 
-load("gen/data-preparation/temp/june.RData")
+load("../../gen/data-preparation/temp/june.RData")
 library(utils)
 library(tidyverse)
 library(stringr)
@@ -165,5 +165,5 @@ sum(is.na(june_s$review_scores_rating))
 
 # save R data -------------------------------------------------------------
 
-save(june_s,file="gen/data-preparation/output/june_s.RData")
+save(june_s,file="../../gen/data-preparation/output/june_s.RData")
 

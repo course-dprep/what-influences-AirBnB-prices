@@ -1,7 +1,7 @@
 
 # load R data -------------------------------------------------------------
 
-load("gen/data-preparation/output/merged_june.RData")
+load("../../gen/data-preparation/output/merged_june.RData")
 
 
 # linear regression -------------------------------------------------------
@@ -12,4 +12,4 @@ summary(merged_june_lm)
 
 # save R data -------------------------------------------------------------
 
-save(merged_june_lm,file="gen/analysis/output/merged_june_lm.RData")
+save(merged_june_lm,file="../../gen/analysis/output/merged_june_lm.RData")
