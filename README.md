@@ -1,14 +1,16 @@
 # How do Property Characteristics influence AirBnB prices and does booking early guarantee a Lower Price?
-<img width="1100" alt="Screenshot 2022-10-10 at 22 31 01" src="https://user-images.githubusercontent.com/96148213/194947888-0b9acaeb-4200-4ce9-b93e-e793eb060fb8.png">
 
 ## 1.Purpose and Motivation
-AirBnB offers many tourists and travelers a relatively affordable and convenient accommodation option and home owners an extra source of income. This project aims to estimate the effects of (a) listing characteristics, (b) time until the booking starts and (c) season on the price per night of the listing. The findings of this research will aid Airbnb hosts in developing a suitable pricing strategy based on the characteristics of the properties they own. Moreover, in this project we investigate all Hawaiian AirBnB listings. The data in this project is sourced from [Inside AirBnB](http://insideairbnb.com/).
+AirBnB offers many tourists and travelers a relatively affordable and convenient accommodation option and home owners an extra source of income. This project aims to estimate the effects of the property characteristics, the time left until the booking starts and the season on the price per night of Hawaiian AirBnB listing by using the publicly available data from [Inside AirBnB](http://insideairbnb.com/).
+
+Our findings are not only relevant for tourists by giving them insights into how prices fluctuate across time or which neighborhood is the cheapest, and thus help them save money on their trip, but also AirBnB hosts by helping them develop a suitable pricing strategy based on the characteristics of the properties they own.
 
 ## 2.Research Question
 _What are the effects of the property characteristics and the number of days left until the booking starts on the price per night of Hawaiian AirBnB listings and do prices differ per season?_
 
 ### Conceptual Model
-<img width="609" alt="Screenshot 2022-10-10 at 19 01 24" src="https://user-images.githubusercontent.com/96148213/194940541-665f3c01-b4fb-4d9b-a4b7-34889cc9540a.png">
+<img width="1145" alt="Screenshot 2022-10-13 at 12 05 26" src="https://user-images.githubusercontent.com/96148213/195839831-323b17ac-e50d-48f8-94d4-7ec0af44222c.png">
+
 _Figure 1. Conceptual Model_
 
 ## 3.Method
@@ -40,7 +42,7 @@ Data dictionary of the raw datasets can be found [here](https://docs.google.com/
 ### 3.2.Research Method
 In order to estimate the effect of several metric and non-metric variables (property characteristics, time until booking starts and season) on another metric variable (listing price of the Hawaiian Airbnb listing), we opt for a regression analysis. We are interested in which property characteristics drive the price up or down and which have the largest effects. All independent variables are outlined in the table above. The regression equation can be summarized as follows:
 
-_Y = β0 + β1*entire_home_apt_room_type + β2*private_room_room_type + β3*shared_room_room_type + β4*hawaii_neignborhood + β5*kauai_neignborhoodbathroom_type + β6*maui_neignborhood + β7*accommodates + β8*bathrooms + β9*bathroom_type + β10*bedrooms + β11*beds + β12*review_score_rating + β13*instant_bookable + β14*time_diff + β15*winter + ε_
+_Y = β0 + β1 * entire_home_apt_room_type + β2 * private_room_room_type + β3 * shared_room_room_type + β4 * hawaii_neignborhood + β5 * kauai_neignborhoodbathroom_type + β6 * maui_neignborhood + β7 * accommodates + β8 * bathrooms + β9 * bathroom_type + β10 * bedrooms + β11 * beds + β12 * review_score_rating + β13 * instant_bookable + β14 * time_diff + β15 * winter + ε_
 
 ## 4.Repository overview 
 ```
@@ -69,7 +71,17 @@ install.packages("stringr")
 
 ## 6.Running Instructions
 
-## 7.Results and Conclusion
+### Cloning Repository
+1. Open Git Bash
+2. Change working directory to preferred location
+3. Type ```git clone https://github.com/course-dprep/what-influences-AirBnB-prices.git
+
+### Running makefile
+1. Change working directory to what-influences-AirBnB-prices```
+2. Type ```make```
+
+## 7.Results, Vizualizations and Conclusion
+
 ### 7.1.Results
 The regression output can be found below.
 
@@ -94,7 +106,18 @@ _Figure 2. Regression Output_
 - When the time difference in days between the date of booking an accommodation and the start date the reservation increases by 1 day, the price will decrease by €0.36;
 - On average, AirBnB listings in Hawaii are on average €13.19 more expensive during winter (November-April) than during summer (May-September).
 
-### 7.3. Conclusion
+### 7.3. Selected Vizualizations
+  ### Does Booking Early Guarantee a Lower Price?
+<img width="647" alt="Screenshot 2022-10-14 at 13 46 26" src="https://user-images.githubusercontent.com/96148213/195842420-31d24644-9657-479c-83fa-ffe74d0e8127.png">
+
+Travelers looking to save money seem to be best off if they book their AirBnB approximately 90-100 days in advance (~ three months), with an average price for an entire home/apartment of around $310 and an average price for a private room of around $270. Interestingly, prices seem to spike around 200 days prior to the booking start date, with the average entire home or apartment reaching $355, making it very disadvantageous for travelers to book around six months in advance. Rather, it would be better to book a bit later.
+
+  ### Which Neighborhood should you Choose?
+<img width="638" alt="Screenshot 2022-10-14 at 13 46 37" src="https://user-images.githubusercontent.com/96148213/195842382-31283af0-1a65-4c8f-89dd-7af3253f83d9.png">
+
+Regardless of the room type travelers are looking for, Hawaii and Honolulu seem to be the cheapest neighborhoods and Muai is the most expensive one. Interestingly, a private room in Maui is more expensive than an entire home or apartment.
+
+### 7.4. Conclusion
 Our findings are relevant for both tourists and travelers  as well as AirBnB hosts. 
 
 For hosts: 
