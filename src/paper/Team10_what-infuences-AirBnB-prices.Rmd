@@ -1,0 +1,205 @@
+---
+title: "How do Property Characteristics influence AirBnB prices and does booking early guarantee a Lower Price?"
+
+author: "Ana Luca (2033998), Alexandra Bock (2037960); Koray Kul (2100716), Merel van Stekelenburg (2022786)"
+
+date: "2022-14-11"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+#load data set
+merged_june <-read.csv("merged_june.csv")
+```
+
+# Introduction
+
+Our project aims to estimate the effects of the property characteristics, the time left until the booking starts and the season on the price per night of Hawaiian AirBnB listing by using the publicly available data from [Inside AirBnB](http://insideairbnb.com).
+
+Our findings are not only relevant for **tourists** by giving them insights into how prices fluctuate across time or which neighborhood is the cheapest, and thus help them save money on their trip, but also **AirBnB hosts** by helping them develop a suitable pricing strategy based on the characteristics of the properties they own.
+
+# Data Visualization
+
+## Approach to Visualizing and **Analyzing** the Data
+
+We first inspected the data visually with the use of different graphs and charts. For that matter, we aggregate the data on several dimensions, such as the room type ("Entire home/apt", "Private room", "Shared room" or "Hotel") or the time left until the booking starts (in days).
+
+Upon inspecting the number of listings per room type, we find that the dataset is made up of 90.12% entire homes or apartments and 9.46% private rooms. The remaining 0.43% represents both shared and hotel rooms listed on AirBnB.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(dplyr)
+df <- merged_june %>% group_by(room_type) %>%
+  dplyr::summarize(Unique = n_distinct(id))
+df <- df %>% rename(number_of_listings = Unique)
+
+df <- df %>% mutate(rel_frequency = (df$number_of_listings/sum(df$number_of_listings)*100))
+df$rel_frequency <- round(df$rel_frequency, 2)
+df
+```
+
+Hence, we decided to exclude these two room types from the data visualization as the very small sample size is bound to be non-representative. Moreover, the dominant property types in Hawaii are clearly either entire apartments/homes or private rooms, which means that our findings will be relevant for most travelers and hosts. Nonetheless, conclusions on the other room types can be derived from the main analysis.
+
+## Does Booking Early Guarantee a Lower Price?
+
+The line graph below plots how the average price for entire homes/apartments and private rooms fluctuates across time, in a one year period. Clearly, the answer to our question is "no".
+
+```{r price fluctuations across time, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+#compute average price per room type for each time difference (from 0 to 365 days)
+library(dplyr)
+df1 <- merged_june %>% group_by(time_diff, room_type) %>%
+  dplyr::summarize(Mean = mean(price_n, na.rm=TRUE))
+
+#remove shared room and hotel room given small sample size
+df1 <- df1 %>% filter(room_type!="Shared room"&room_type!="Hotel room")
+#remane room_type 
+df1 <- df1 %>% rename(RoomType = room_type)
+
+#create line plot and save as object               
+library(ggplot2)
+time_diff_room_type <- ggplot(data=df1, aes(x=time_diff, y=Mean, colour = RoomType, linetype = RoomType)) + geom_line() + ylim(260,360) 
+
+#display line chart
+print(time_diff_room_type + ggtitle("Price Fluctuations across Time") + labs(y = "Mean Price", x = "Days until Booking Starts"))
+```
+
+**Travelers looking to save money seem to be best off if they book their AirBnB approximately 90-100 days in advance (\~ three months)**, with an average price for an entire home/apartment of around \$310 and an average price for a private room of around \$270. Interestingly, prices seem to spike around 200 days prior to the booking start date, with the average entire home or apartment reaching \$355, making it very disadvantageous for travelers to book around six months in advance. Rather, it would be better to book a bit later.
+
+## Do Hosts with Higher Review Ratings Charge a Premium?
+
+The line graph below shows the trends of the average prices per room type given a review score between 3 and 5. The listings with a review score between 0 and 3 are not included since they only represent 6% of the dataset and excluding them improves the visibility of the trends.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+df2 <- merged_june %>% group_by(review_scores_rating,room_type) %>%
+  dplyr::summarize(Mean = mean(price_n, na.rm=TRUE))
+
+#remove shared room and hotel room given small sample size
+df2 <- df2 %>% filter(room_type!="Shared room"&room_type!="Hotel room")
+
+#remane room_type 
+df2 <- df2 %>% rename(RoomType = room_type)
+
+review_scores_rating_room_type <- ggplot(data=df2, aes(x=review_scores_rating, y=Mean, colour = RoomType, linetype = RoomType,group=RoomType)) + geom_line() + xlim(3,5) + ylim(0,500) + geom_smooth(method=lm)
+
+#display line chart
+print(review_scores_rating_room_type + ggtitle("Price Trends based on Review Scores") + labs(y = "Mean Price", x = "Review Score"))
+```
+
+The findings **for the room type "entire home/apartment"** are quite intuitive, suggesting that **hosts that have higher reviews for their listings will charge a higher price in exchange for their better service.** While the average price of a 3-star AirBnB is around \$210, a 5-star AirBnB will charge \$80 more per night on average.
+
+Counterintuitively, this trend doesn't hold for private rooms. The data shows a negative relationship between review rating and average price.
+
+## Which Neighborhood should you Choose?
+
+The line graph below depicts the average prices per neighborhood group per room type.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+df3 <- merged_june %>% group_by(neighbourhood_group_cleansed, room_type) %>%
+  dplyr::summarize(Mean = mean(price_n, na.rm=TRUE))
+
+#remove shared room and hotel room given small sample size
+df3 <- df3 %>% filter(room_type == "Entire home/apt" | room_type == "Private room")
+
+#remane room_type 
+df3 <- df3 %>% rename(RoomType = room_type)
+
+neighbourhood_group_cleansed_room_type <- ggplot(data=df3) +
+  geom_line(aes(x=neighbourhood_group_cleansed, y=Mean, group = RoomType, color=RoomType)) +
+  geom_point(aes(x=neighbourhood_group_cleansed, y=Mean)) + ylim(150,500)
+
+print(neighbourhood_group_cleansed_room_type + ggtitle("Price Fluctuations per Neighbourhood Group and Room Type")+ labs(y = "Mean Price", x = "Neighbourhood Group"))
+```
+
+Regardless of the room type travelers are looking for, **Hawaii and Honolulu seem to be the cheapest neighborhoods and** **Muai is the most expensive** one. Interestingly, a private room in Maui is more expensive than an entire home or apartment.
+
+## How many Listings are there per Neighborhood?
+
+The stacked bar graph below shows the number of listings per neighborhood, which is an indication for travelers about the supply size. The graph also differentiates per room type.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+df5 <- merged_june %>% group_by(neighbourhood_group_cleansed, room_type) %>%
+  dplyr::summarize(Unique = n_distinct(id))
+
+df5 <- df5 %>% filter(room_type == "Entire home/apt" | room_type == "Private room")
+
+#remane room_type 
+df5 <- df5 %>% rename(RoomType = room_type)
+
+neighbourhood_group_cleansed_room_type <- ggplot(data = df5, aes(x = neighbourhood_group_cleansed, y = Unique, fill = RoomType)) + 
+  geom_bar(stat='identity') +
+  geom_text(aes(label=Unique), vjust=0.8, color="white", size=3.5)+
+  theme_minimal()
+
+print(neighbourhood_group_cleansed_room_type + ggtitle("Number of Listings per Neighbourhood per Room Type") + labs(y = "Number of Listings", x = "Neighbourhood"))
+```
+
+**Most listings are in the Maui neighborhood and the least in Kauai.**
+
+# Main Analysis
+
+Although the above visualizations might be a great way to get a sense of the major trends within the data, the fact is that the prices could be influenced by a number of other factors besides the variables they are plotted against on a graph; thus making interpretation tricky.
+
+Hence, we perform a regression analysis to understand what the direction and effect size of each predictor variable included in our model has on the prices of Hawaiian AirBnB listings.
+
+The output of the linear regression is the following:
+
+```{r pressure, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Linear Regression
+merged_june_lm <- lm(price_n ~ bathrooms + accommodates + beds + bedrooms + review_scores_rating + bathroom_shared + hawaii_neighbourhood + kauai_neighbourhood + maui_neighbourhood +entire_home_apt_room_type + private_room_room_type + shared_room_room_type + instant_bookable_dummy + time_diff + winter, merged_june, na.action = na.omit)
+summary(merged_june_lm)
+```
+
+## Interpretation
+
+All else equal,
+
+-   An entire room or apartment listed on AirBnB is on average €65.51 cheaper compared to a hotel room;
+
+-   A private room listed on AirBnB is on average €23.40 cheaper than a hotel room;
+
+-   A shared room listed on AirBnB is on average €151.4 cheaper than a hotel room;
+
+-   AiBnB listings in the Hawaii neighborhood are on average €29.47 cheaper than listings in the Honolulu neighborhood;
+
+-   AiBnB listings in the Kauai neighborhood are on average €75.63 more expensive than listings in the Honolulu neighborhood;
+
+-   AiBnB listings in the Maui neighborhood are on average €85.41 more expensive than listings in the Honolulu neighborhood;
+
+-   A property that can accommodate an additional guest will have an average price higher by €30.37;
+
+-   A property that has an additional bathroom will have an average price higher by €77.84;
+
+-   A listing with a shared bathroom will cost on average €113.2 less than listings that have a private bathroom;
+
+-   A property that has an additional bedroom will have an average price higher by €9.61;
+
+-   A property that has an additional bed will have an average price higher by €1.54;
+
+-   On average, AirBnB listings in Hawaii that have a review score higher by 1 unit will charge €22.92 more;
+
+-   A listing that can be booked instantly (i.e., doesn't require the host's approval) costs on average €21.24 more than listings for which the host's approval is required;
+
+-   When the time difference in days between the date of booking an accommodation and the start date the reservation increases by 1 day, the price will decrease by €0.36;
+
+-   On average, AirBnB listings in Hawaii are €13.19 more expensive during winter (November-April) than during summer (May-September).
+
+## Implications
+
+### For hosts:
+
+-   Consumers are willing to pay a premium of €22.92 for properties that have a review score higher by 1 unit;
+-   You can charge higher prices by €13.19 during winter season as opposed to summer;
+-   The Hawaii neighborhood has the cheapest listings, while the Maui neighborhood is the most expensive;
+-   Prices in general increase over time;
+-   You can charge higher prices by €21.24 by listing your property as instantly bookable;
+
+### For consumers:
+
+-   Book early! Prices on average increase by €0.36 per day.
+-   The Hawaii neighborhood has the cheapest AirBnB listings.
+-   If you're flexible, visit Hawaii during summer! AirBnB listings in Hawaii are on average €13.19 more expensive during winter (November-April) than during summer (May-September).
