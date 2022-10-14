@@ -74,10 +74,10 @@ install.packages("stringr")
 ### Cloning Repository
 1. Open Git Bash
 2. Change working directory to preferred location
-3. Type ```git clone https://github.com/course-dprep/what-influences-AirBnB-prices.git
+3. Type ```git clone https://github.com/course-dprep/what-influences-AirBnB-prices.git```
 
 ### Running makefile
-1. Change working directory to what-influences-AirBnB-prices```
+1. Change working directory to what-influences-AirBnB-prices
 2. Type ```make```
 
 ## 7.Results, Vizualizations and Conclusion
