@@ -1,7 +1,7 @@
 
 # loading R data and libraries --------------------------------------------
 
-load("gen/data-preparation/temp/calendar_j.RData")
+load("../../gen/data-preparation/temp/calendar_j.RData")
 library(utils)
 library(tidyverse)
 library(stringr)
@@ -60,6 +60,6 @@ calendar_j_s$winter <- ifelse((calendar_j_s$date >= as.Date("2022-11-01") & cale
 #remove original calendar data frame to free memory
 rm(calendar_j)
 
-save(calendar_j_s,file="gen/data-preparation/output/calendar_j_s.RData")
+save(calendar_j_s,file="../../gen/data-preparation/output/calendar_j_s.RData")
 
 
