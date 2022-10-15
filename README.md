@@ -135,6 +135,6 @@ For consumers:
 
 ## Team 10 Data Preparation & Workflow Management
 - Alexandra Bock [a.bock@tilburguniversity.edu]
-- Koray Kul [a.b.luca@tilburguniversity.edu]
-- Ana Luca [k.kul@tilburguniversity.edu]
+- Koray Kul [k.kul@tilburguniversity.edu] 
+- Ana Luca [a.b.luca@tilburguniversity.edu]
 - Merel van Stekelenburg [m.vanstekelenburg@tilburguniversity.edu]
