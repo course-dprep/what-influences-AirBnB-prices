@@ -90,6 +90,8 @@ The regression output can be found below.
 _Figure 2. Regression Output_
 
 ## 7.2.Interpretation
+
+All else equal,
 - An entire room or apartment listed on AirBnB is on average €65.51 cheaper compared to a hotel room, while a private room listed on AirBnB is on average €23.40 cheaper than a hotel room;
 - AiBnB listings in the Hawaii neighborhood are on average €29.47 cheaper than listings in the Honolulu neighborhood and listings in the Maui neighborhood are on average €85.41 more expensive than listings in the Honolulu neighborhood;
 - A property that can accommodate an additional guest will have an average price higher by €30.37;
