@@ -90,21 +90,14 @@ The regression output can be found below.
 _Figure 2. Regression Output_
 
 ## 7.2.Interpretation
-- An entire room or apartment listed on AirBnB is on average €65.51 cheaper compared to a hotel room;
-- A private room listed on AirBnB is on average €23.40 cheaper than a hotel room;
-- A shared room listed on AirBnB is on average €151.4 cheaper than a hotel room;
-- AiBnB listings in the Hawaii neighborhood are on average €29.47 cheaper than listings in the Honolulu neighborhood;
-- AiBnB listings in the Kauai neighborhood are on average €75.63 more expensive than listings in the Honolulu neighborhood;
-- AiBnB listings in the Maui neighborhood are on average €85.41 more expensive than listings in the Honolulu neighborhood;
+- An entire room or apartment listed on AirBnB is on average €65.51 cheaper compared to a hotel room, while a private room listed on AirBnB is on average €23.40 cheaper than a hotel room;
+- AiBnB listings in the Hawaii neighborhood are on average €29.47 cheaper than listings in the Honolulu neighborhood and listings in the Maui neighborhood are on average €85.41 more expensive than listings in the Honolulu neighborhood;
 - A property that can accommodate an additional guest will have an average price higher by €30.37;
-- A property that has an additional bathroom will have an average price higher by €77.84;
-- A listing with a shared bathroom will cost on average €113.2 less than listings that have a private bathroom;
 - A property that has an additional bedroom will have an average price higher by €9.61;
-- A property that has an additional bed will have an average price higher by €1.54;
 - On average, AirBnB listings in Hawaii that have a review score higher by 1 unit will charge €22.92 more;
 - A listing that can be booked instantly (i.e., doesn't require the host's approval) costs on average €21.24 more than listings for which the host's approval is required;
 - When the time difference in days between the date of booking an accommodation and the start date the reservation increases by 1 day, the price will decrease by €0.36;
-- On average, AirBnB listings in Hawaii are on average €13.19 more expensive during winter (November-April) than during summer (May-September).
+- On average, AirBnB listings in Hawaii are €13.19 more expensive during winter (November-April) than during summer (May-September).
 
 ### 7.3. Selected Vizualizations
   ### Does Booking Early Guarantee a Lower Price?
